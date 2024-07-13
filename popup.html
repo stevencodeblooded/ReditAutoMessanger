@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit AutoMessenger</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { padding: 20px; }
+    .button { margin: 10px 0; padding: 10px 20px; cursor: pointer; }
+    #status { margin-top: 20px; }
+    #message-templates { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reddit AutoMessenger</h1>
+    
+    <div id="gather-section">
+      <label for="subreddits">Enter Subreddits (comma-separated):</label><br>
+      <input type="text" id="subreddits" placeholder="e.g. askreddit, funny"><br><br>
+      <label for="criteria">Enter Criteria (keywords):</label><br>
+      <input type="text" id="criteria" placeholder="e.g. giveaway, help"><br><br>
+      <button id="start" class="button">Start Gathering Usernames</button><br>
+      <button id="download" class="button" disabled>Download CSV</button><br>
+      <div id="status"></div>
+    </div>
+    
+    <div id="message-section">
+      <h2>Send Messages</h2>
+      <input type="file" id="csvUpload" accept=".csv"><br><br>
+      <div id="usernames-preview"></div>
+      <div id="message-templates">
+        <label for="message">Select Message Template:</label><br>
+        <select id="message">
+          <option value="Message 1">Message 1</option>
+          <option value="Message 2">Message 2</option>
+          <option value="Message 3">Message 3</option>
+          <option value="Message 4">Message 4</option>
+          <option value="Message 5">Message 5</option>
+        </select><br><br>
+        <textarea id="customMessage" placeholder="Customize your message here"></textarea><br><br>
+        <button id="sendMessages" class="button" disabled>Send Messages</button>
+      </div>
+      <div id="sendStatus"></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
