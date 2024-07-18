@@ -1,29 +1,28 @@
-const fetchUsernames = async (subreddits, criteria) => {
-    let usernames = new Set();
-  
-    for (const subreddit of subreddits) {
-      for (const criterion of criteria) {
-        const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${criterion}&restrict_sr=on&sort=relevance&t=all`;
-  
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        data.data.children.forEach(post => {
-          usernames.add(post.data.author);
-        });
-      }
-    }
-  
-    return Array.from(usernames);
-  };
-  
-  chrome.storage.local.get(['subreddits', 'criteria'], async ({ subreddits, criteria }) => {
-    if (subreddits && criteria) {
-      const usernames = await fetchUsernames(subreddits, criteria);
-  
-      chrome.storage.local.set({ usernames }, () => {
-        chrome.runtime.sendMessage({ statusUpdate: 'Completed' });
-      });
+console.log("Content script loaded.");
+
+// Function to gather usernames based on specified criteria
+function gatherUsernames() {
+  const criteria = new Set(chrome.storage.local.get("criteria"));
+  const usernames = new Set();
+
+  // Select all author elements
+  document.querySelectorAll(".author").forEach(author => {
+    const username = author.textContent.trim();
+    // Check if the post or comment content includes any of the criteria
+    const content = author.closest(".entry").querySelector(".usertext-body").textContent;
+    if (Array.from(criteria).some(criterion => content.includes(criterion))) {
+      usernames.add(username);
     }
   });
-  
+
+  return Array.from(usernames);
+}
+
+// Run the gatherUsernames function and store the result
+chrome.storage.local.get(["usernames"], ({ usernames }) => {
+  const gatheredUsernames = gatherUsernames();
+  const allUsernames = usernames ? [...new Set([...usernames, ...gatheredUsernames])] : gatheredUsernames;
+  chrome.storage.local.set({ usernames: allUsernames }, () => {
+    chrome.runtime.sendMessage({ type: "usernamesGathered", usernames: allUsernames });
+  });
+});

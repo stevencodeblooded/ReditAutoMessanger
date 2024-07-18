@@ -1,0 +1,106 @@
+body {
+  padding: 15px 3px;
+}
+
+.img-reddit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.reddit {
+  width: 60px;
+  margin-inline: auto;
+  border-radius: 100%;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#message-templates {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+input,
+select {
+  font-size: 12px;
+  font-weight: 500;
+  /* width: 100%; */
+  border-radius: 6px;
+  padding-block: 10px;
+  padding-inline: 6px;
+  outline: none;
+  border: 1px solid #c0c0c0c0;
+}
+
+.flex-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+button {
+  padding-block: 12px;
+  width: 100%;
+  margin-block: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.start {
+  background-color: red;
+  color: white;
+}
+
+.download {
+  background-color: black;
+  color: white;
+}
+
+#sendMessages {
+  background-color: black;
+  color: white;
+}
+
+#message {
+  max-width: 100%;
+}
+
+#customMessage {
+  padding-block: 10px;
+  padding-inline: 6px;
+  outline: none;
+  border: 1px solid #c0c0c0c0;
+  border-radius: 6px;
+}
+
+#status, #sendStatus {
+  text-align: center;
+  background-color: pink;
+  border-radius: 5px;
+}

@@ -1,27 +1,36 @@
 {
-    "manifest_version": 3,
-    "name": "Reddit AutoMessenger",
-    "version": "1.0",
-    "description": "Gather Reddit usernames and send them messages automatically.",
-    "permissions": [
-      "activeTab",
-      "scripting",
-      "storage",
-      "downloads"
-    ],
-    "host_permissions": [
-      "https://www.reddit.com/*"
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
-      }
-    },
-    "background": {
-      "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "Reddit AutoMessenger",
+  "version": "1.0",
+  "description": "Gather Reddit usernames and send them messages automatically.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "identity"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
     }
+  },
+  "host_permissions": [
+    "https://www.reddit.com/*",
+    "https://oauth.reddit.com/*"
+  ],
+  "oauth2": {
+    "client_id": "OzSQsqXVwJVCJk8Hwa3avw",
+    "scopes": [
+      "identity",
+      "privatemessages"
+    ],
+    "redirect_uri": "https://hnkaknndnfammfldmfcdinfklmcpjpon.chromiumapp.org/oauth2"
   }
-  
+}
